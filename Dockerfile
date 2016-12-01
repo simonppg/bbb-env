@@ -7,10 +7,8 @@ RUN apt-get -y install vim
 
 # Setup home environment
 RUN adduser bone
-
+RUN chown -R bone: /home/bone
 WORKDIR /home/bone/bbb-hal
 ENV HOME /home/bone
-COPY . /home/bone/bbb-hal
 
-RUN chown -R bone: /home/bone
 USER bone

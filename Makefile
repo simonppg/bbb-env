@@ -9,7 +9,7 @@ build_docker_image: Dockerfile
 	docker build -t dev-env .
 
 run_docker_image: build_docker_image
-	docker run -it dev-env
+	docker run -v ${HOME}/bbb-hal:/home/bone/bbb-hal -it dev-env
 
 clean_docker_containers:
 	docker rm -f `docker ps -a -q`
