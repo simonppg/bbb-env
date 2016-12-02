@@ -4,6 +4,7 @@ FROM ubuntu:16.04
 # Install packages
 RUN apt-get update -y
 RUN apt-get -y install vim
+RUN apt-get -y install git
 
 # Setup home environment
 RUN adduser bone
