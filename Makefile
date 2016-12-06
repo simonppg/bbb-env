@@ -13,10 +13,8 @@ fetch:
 	if [ ! -d ${HOME}/bbb-hal/buildroot ]; then\
 		git clone git://git.busybox.net/buildroot;\
 		cd buildroot && git checkout 2016.05;\
-		cp -l -f ${HOME}/bbb-hal/configs/bbb_defconfig ${HOME}/bbb-hal/buildroot/configs/bbb_defconfig;\
 	else\
 		cd buildroot && git checkout 2016.05;\
-		cp -l -f ${HOME}/bbb-hal/configs/bbb_defconfig ${HOME}/bbb-hal/buildroot/configs/bbb_defconfig;\
 	fi
 
 build_docker_image: Dockerfile
@@ -29,6 +27,7 @@ clean_docker_containers:
 	docker rm -f `docker ps -a -q`
 
 build_bbb_linux_image:
+	cp -l -f ${HOME}/bbb-hal/configs/bbb_defconfig ${HOME}/bbb-hal/buildroot/configs/bbb_defconfig;\
 	cd buildroot && make bbb_defconfig && make;
 
 clean_docker_images:
