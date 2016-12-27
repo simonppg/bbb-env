@@ -24,9 +24,6 @@ RUN apt-get -y install vim\
         bc
 
 # Setup home environment
-RUN adduser bone
-RUN chown -R bone: /home/bone
-WORKDIR /home/bone/bbb-hal
-ENV HOME /home/bone
-
+RUN useradd -ms /bin/bash bone
 USER bone
+WORKDIR /home/bone/bbb-hal
