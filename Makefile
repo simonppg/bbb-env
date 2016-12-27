@@ -10,18 +10,20 @@ help:
 	@echo "		clean_docker_images"
 
 fetch:
-	if [ ! -d ${HOME}/bbb-hal/buildroot ]; then\
+	if [ ! -d ${HOME}/buildroot ]; then\
 		git clone git://git.busybox.net/buildroot;\
-		cd buildroot && git checkout 2016.05;\
+		cd ${HOME}/buildroot && git checkout 2016.05;\
 	else\
-		cd buildroot && git checkout 2016.05;\
+		cd ${HOME}/buildroot && git checkout 2016.05;\
 	fi
 
 build_docker_image: Dockerfile
 	docker build -t dev-env .
 
 run_docker_image: build_docker_image fetch
-	docker run -v ${HOME}/bbb-hal:/home/bone/bbb-hal -it dev-env
+	docker run --rm \
+		-v ${HOME}/bbb-hal:/home/bone/bbb-hal \
+		-v ${HOME}/buildroot:/home/bone/bbb-hal/buildroot -it dev-env
 
 clean_docker_containers:
 	docker rm -f `docker ps -a -q`
