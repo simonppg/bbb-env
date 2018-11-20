@@ -27,3 +27,5 @@ RUN apt-get -y install vim\
 RUN useradd -ms /bin/bash bone
 USER bone
 WORKDIR /home/bone/bbb-hal
+#CMD ["make", "build_bbb_linux"]
+#ENTRYPOINT make build_bbb_linux
